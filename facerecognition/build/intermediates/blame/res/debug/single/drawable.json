@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\StudioProjects\\UpecFaceRecognition\\facerecognition\\build\\intermediates\\res\\merged\\debug\\drawable\\icon.png",
+        "source": "C:\\StudioProjects\\UpecFaceRecognition\\facerecognition\\src\\main\\res\\drawable\\icon.png"
+    },
+    {
+        "merged": "C:\\StudioProjects\\UpecFaceRecognition\\facerecognition\\build\\intermediates\\res\\merged\\debug\\drawable\\lightbulb.png",
+        "source": "C:\\StudioProjects\\UpecFaceRecognition\\facerecognition\\src\\main\\res\\drawable\\lightbulb.png"
+    },
+    {
+        "merged": "C:\\StudioProjects\\UpecFaceRecognition\\facerecognition\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_stat_camera.png",
+        "source": "C:\\StudioProjects\\UpecFaceRecognition\\facerecognition\\src\\main\\res\\drawable\\ic_stat_camera.png"
+    }
+]

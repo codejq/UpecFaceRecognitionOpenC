@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\StudioProjects\\UpecFaceRecognition\\facerecognition\\build\\intermediates\\res\\merged\\debug\\raw\\haarcascade_hand_1.xml",
+        "source": "C:\\StudioProjects\\UpecFaceRecognition\\facerecognition\\src\\main\\res\\raw\\haarcascade_hand_1.xml"
+    },
+    {
+        "merged": "C:\\StudioProjects\\UpecFaceRecognition\\facerecognition\\build\\intermediates\\res\\merged\\debug\\raw\\lbpcascade_frontalface.xml",
+        "source": "C:\\StudioProjects\\UpecFaceRecognition\\facerecognition\\src\\main\\res\\raw\\lbpcascade_frontalface.xml"
+    },
+    {
+        "merged": "C:\\StudioProjects\\UpecFaceRecognition\\facerecognition\\build\\intermediates\\res\\merged\\debug\\raw\\haarcascade_hand_2.xml",
+        "source": "C:\\StudioProjects\\UpecFaceRecognition\\facerecognition\\src\\main\\res\\raw\\haarcascade_hand_2.xml"
+    }
+]

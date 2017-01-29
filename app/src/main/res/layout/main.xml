@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.piisoft.upecfacerecognition.FaceTrackerActivity">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/topLayout"
+        android:orientation="vertical"
+        android:keepScreenOn="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+
+
+
+        <com.piisoft.upecfacerecognition.ui.camera.CameraSourcePreview
+            android:id="@+id/preview"
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.piisoft.upecfacerecognition.ui.camera.CameraSourcePreview>
+
+
+
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/flib_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/rotate_camera"
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        app:backgroundTint="@android:color/holo_orange_dark"
+        android:layout_gravity="bottom|start" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/save_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_camera"
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_gravity="bottom|end" />
+
+    <com.piisoft.upecfacerecognition.ui.camera.GraphicOverlay
+        android:id="@+id/faceOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</android.support.design.widget.CoordinatorLayout>
+

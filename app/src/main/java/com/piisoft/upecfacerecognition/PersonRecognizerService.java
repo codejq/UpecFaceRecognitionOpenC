@@ -28,8 +28,8 @@ public  class PersonRecognizerService {
     int count=0;
     labels labelsFile;
 
-    static  final int WIDTH= 256;
-    static  final int HEIGHT= 256;;
+    static  final int WIDTH= 128;
+    static  final int HEIGHT= 128;;
     private int mProb=999;
 
 
@@ -78,31 +78,31 @@ public  class PersonRecognizerService {
         }
     }
 
-    public boolean train() {
+    public boolean train(String  imagePath , boolean forthTrain) {
+        String tarningResult = imagePath + File.separator + "faceRecognizer.txt";
+        File tarningResultFile = new File(tarningResult);
+        if(!forthTrain && tarningResultFile.exists()) {
+            faceRecognizer.load(tarningResult);
+            return true;
+        }
 
-        File root = new File(mPath);
-
+        File root = new File(imagePath);
         FilenameFilter pngFilter = new FilenameFilter() {
             public boolean accept(File dir, String name) {
                 return name.toLowerCase().endsWith(".jpg");
-
             };
         };
 
         File[] imageFiles = root.listFiles(pngFilter);
-
+        if(imageFiles.length < 1){
+            return  true;
+        }
         MatVector images = new MatVector(imageFiles.length);
-
         int[] labels = new int[imageFiles.length];
-
         int counter = 0;
-        int label;
 
         IplImage img=null;
         IplImage grayImg;
-
-        int i1=mPath.length();
-
 
         for (File image : imageFiles) {
             String p = image.getAbsolutePath();
@@ -112,64 +112,41 @@ public  class PersonRecognizerService {
                 Log.e("Error","Error cVLoadImage");
             Log.i("image",p);
 
-            int i2=p.lastIndexOf("-");
-            int i3=p.lastIndexOf(".");
-            int icount=Integer.parseInt(p.substring(i2+1,i3));
-            if (count<icount) count++;
-
-            String description=p.substring(i1,i2);
-
-            if (labelsFile.get(description)<0)
-                labelsFile.add(description, labelsFile.max()+1);
-
-            label = labelsFile.get(description);
-
             grayImg = IplImage.create(img.width(), img.height(), IPL_DEPTH_8U, 1);
-
             cvCvtColor(img, grayImg, CV_BGR2GRAY);
-
             images.put(counter, grayImg);
-
-            labels[counter] = label;
+            labels[counter] = counter;
 
             counter++;
         }
-        if (counter>0)
-            if (labelsFile.max()>1)
-                faceRecognizer.train(images, labels);
-        labelsFile.Save();
+        if (counter>0) {
+            faceRecognizer.train(images, labels);
+            faceRecognizer.save(tarningResult);
+        }
 
         return true;
     }
 
     public boolean canPredict()
     {
-        if (labelsFile.max()>1)
-            return true;
-        else
-            return false;
+        return true;
 
     }
 
-    public String predict(Mat m) {
-        if (!canPredict())
-            return "";
+    public boolean predict(Bitmap m) {
+
+        Bitmap bmp= Bitmap.createBitmap(m.getWidth(), m.getHeight(), Bitmap.Config.ARGB_8888);
         int n[] = new int[1];
         double p[] = new double[1];
-        IplImage ipl = MatToIplImage(m,WIDTH, HEIGHT);
+        IplImage ipl = BitmapToIplImage(bmp,-1, -1);
 //		IplImage ipl = MatToIplImage(m,-1, -1);
 
         faceRecognizer.predict(ipl, n, p);
+        Log.e("Result:",n[0] + "");
+        Log.e("Result:",p[0] + "");
 
-        if (n[0]!=-1)
-            mProb=(int)p[0];
-        else
-            mProb=-1;
-        //	if ((n[0] != -1)&&(p[0]<95))
-        if (n[0] != -1)
-            return labelsFile.get(n[0]);
-        else
-            return "Unkown";
+
+        return  n[0]!=-1;
     }
 
 
@@ -228,7 +205,7 @@ public  class PersonRecognizerService {
 
 
     public void load() {
-        train();
+       // train();
 
     }
 

@@ -16,7 +16,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.1"
-        sha1="252d314cbb76ad5cdadd1e67e98a97aab9854508">
+        sha1="15df86b078b521586f50fb3f54ce3108bfa7057c">
         <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_c9bedd250af6b758336ebeec327002b1710dd0d3\classes.dex" />
     </item>
     <item
@@ -106,7 +106,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.1"
-        sha1="313781829cf4ef0ebb677b49a043bcb7625dc803">
+        sha1="edd927c4ba4d0687fc279742376d97070396c94a">
         <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_be2bcfcdfff02f1a7b7cbd63b1d0ed91539d9488\classes.dex" />
     </item>
     <item

@@ -1,6 +1,9 @@
 package org.opencv.android;
 
 import android.content.Context;
+import android.content.Intent;
+
+import static org.opencv.android.AsyncServiceHelper.InstallService;
 
 /**
  * Helper class provides common initialization methods for OpenCV library.
@@ -70,6 +73,23 @@ public class OpenCVLoader
     public static boolean initDebug(boolean InitCuda)
     {
         return StaticHelper.initOpenCV(InitCuda);
+    }
+
+    // this code from http://stackoverflow.com/questions/27470313/opencv-service-intent-must-be-explicit-android-5-0-lolipop
+    public static boolean initOpenCV(String Version, final Context AppContext,
+                                     final LoaderCallbackInterface Callback) {
+        AsyncServiceHelper helper = new AsyncServiceHelper(Version, AppContext,
+                Callback);
+        Intent intent = new Intent("org.opencv.engine.BIND");
+        intent.setPackage("org.opencv.engine");
+        if (AppContext.bindService(intent, helper.mServiceConnection,
+                Context.BIND_AUTO_CREATE)) {
+            return true;
+        } else {
+            AppContext.unbindService(helper.mServiceConnection);
+            InstallService(AppContext, Callback);
+            return false;
+        }
     }
 
     /**

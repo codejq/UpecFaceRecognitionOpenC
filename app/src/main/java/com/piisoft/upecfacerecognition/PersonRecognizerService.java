@@ -9,6 +9,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 
+import org.opencv.android.BaseLoaderCallback;
+import org.opencv.android.LoaderCallbackInterface;
+import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
 import org.opencv.core.Mat;
 
@@ -17,6 +20,7 @@ import com.googlecode.javacv.cpp.opencv_contrib.FaceRecognizer;
 import com.googlecode.javacv.cpp.opencv_core.IplImage;
 import com.googlecode.javacv.cpp.opencv_core.MatVector;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 
@@ -33,15 +37,16 @@ public  class PersonRecognizerService {
     private int mProb=999;
 
 
-    PersonRecognizerService(String path , int eRecognizer)
+    public PersonRecognizerService(String path , int eRecognizer )
     {
-
 
         chooseRecognizer(eRecognizer);
         // path=Environment.getExternalStorageDirectory()+"/facerecog/faces/";
         mPath=path;
 
     }
+
+
 
     void chooseRecognizer(int nRec)
     {

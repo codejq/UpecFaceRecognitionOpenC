@@ -81,6 +81,15 @@
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content" >
 
+			Button
+
+			<Button
+				android:id="@+id/buttonCheckAuthrization"
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_weight="0.07"
+				android:text="C"
+ />
 		    <ToggleButton
 		        android:id="@+id/toggleButton1"
 		        android:layout_width="wrap_content"

@@ -3,6 +3,7 @@ package com.piisoft.upecfacerecognition;
 import java.io.File;
 //import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -20,6 +21,8 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import com.piisoft.upecfacerecognition.R;
+import com.piisoft.upecfacerecognition.utility.Image;
+
 import org.opencv.android.CameraBridgeViewBase.CvCameraViewListener2;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
@@ -30,6 +33,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -200,6 +204,36 @@ public class FdActivity extends Activity implements CvCameraViewListener2 {
         Log.i(TAG, "Instantiated new " + this.getClass());
     }
 
+    private  void CheckAuthrization(){
+        String path = Environment.getExternalStorageDirectory().toString() + File.separator + "FaceRecognition";
+        String pathToDatabase = path  + File.separator + "faceDatabase";
+        String stranger_faceDatabase =  path + File.separator + "stranger_faceDatabase";
+        PersonRecognizerService pr = new PersonRecognizerService(pathToDatabase,1);
+        pr.train(pathToDatabase,true);
+
+
+
+        File root = new File(stranger_faceDatabase);
+        FilenameFilter pngFilter = new FilenameFilter() {
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase().endsWith(".jpg");
+            };
+        };
+
+        File[] imageFiles = root.listFiles(pngFilter);
+        for (File image : imageFiles) {
+           // Bitmap stranger = Image.bitmapFromJpg(image);
+            Toast.makeText(getApplicationContext(), image.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+            if( pr.predict( image.getAbsolutePath())){
+                Toast.makeText(getApplicationContext(), "Ok you are Authorized to Login into this Device", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+        if(imageFiles.length > 0){
+            Toast.makeText(getApplicationContext(), "Not Not Not ", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -214,7 +248,9 @@ public class FdActivity extends Activity implements CvCameraViewListener2 {
         mOpenCvCameraView.setCvCameraViewListener(this);
        
         
-        mPath=getFilesDir()+"/facerecogOCV/";
+        //mPath=getFilesDir()+"/facerecogOCV/";
+        mPath= Environment.getExternalStorageDirectory().toString() +"/facerecogOCV/";
+
         		
         labelsFile= new labels(mPath);
                  
@@ -281,8 +317,15 @@ public class FdActivity extends Activity implements CvCameraViewListener2 {
         		startActivity(i);
         	};
         	});
-        
-        
+
+        Button buttonCheckAuthrization=(Button)findViewById(R.id.buttonCheckAuthrization);
+        buttonCheckAuthrization.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                CheckAuthrization();
+            };
+        });
+
+
         text.setOnKeyListener(new View.OnKeyListener() {
         	public boolean onKey(View v, int keyCode, KeyEvent event) {
         		if ((text.getText().toString().length()>0)&&(toggleButtonTrain.isChecked()))

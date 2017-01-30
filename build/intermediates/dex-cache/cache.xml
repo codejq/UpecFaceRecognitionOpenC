@@ -12,6 +12,105 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d7134b424a4e9b6481a2c9dd597b7e93b5f4ad0b">
+        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_c9bedd250af6b758336ebeec327002b1710dd0d3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\a\.gradle\caches\modules-2\files-2.1\com.sun.mail\android-activation\1.5.5\5442d5e05808145434b750c9f8a0c3f537383c5a\android-activation-1.5.5.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5442d5e05808145434b750c9f8a0c3f537383c5a">
+        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\android-activation-1.5.5_0b0d8264ea52740b1f4c2514fab2f1f14faebacc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\9.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="670df81539ab71918d49b186598b7eff08ef6563">
+        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-vision-9.4.0_844ab28104b4076c7494ef544881723b62037137\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\StudioProjects\face-recognition1\facerecognition\libs\javacpp.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="08f8b1e3fdcc93a1e9076d6279864d6a46982a85">
+        <dex dex="C:\StudioProjects\face-recognition1\facerecognition\build\intermediates\transforms\dex\debug\folders\1000\2\javacpp_db917d33179d4e9736aaf824fd09b8759e14655c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.4.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="618485fef3ebe12127f7622abbc9b5b39057b5c2">
+        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-9.4.0_e4e16566a5a3165a4f8e89fdc6dea06c549854ee\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.2.1_10cd953c940accdea77ebb67004f63b8f836c70e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.2.1_3cd0fe00684054db07cb9f1ff9cc641d7dbacffd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_251288208ef0335f721543f7df6b0c3f431614ae\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\a\.gradle\caches\modules-2\files-2.1\com.sun.mail\android-mail\1.5.5\53a2f927b235acb565dbe9314ececfb7e6d43020\android-mail-1.5.5.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="53a2f927b235acb565dbe9314ececfb7e6d43020">
+        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\android-mail-1.5.5_a045181eddf087edde4e9f02609227097d682c0b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_5056d99fb8ed4addbca4f741fb14608b0193390c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_f83aa379fbcead97a45f6f6f3e276687d3e4bd7e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -25,17 +124,8 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.1"
-        sha1="14746e9493409ec615d4fea5d5d32b0a2f0c850d">
+        sha1="73aafc00efd4bb7d5cb3ed7a64ba556df7281ebf">
         <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_be2bcfcdfff02f1a7b7cbd63b1d0ed91539d9488\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="2d3b41af45bd88c153397e1b480bf9f170b89f9a">
-        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_c9bedd250af6b758336ebeec327002b1710dd0d3\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -75,24 +165,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\9.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="670df81539ab71918d49b186598b7eff08ef6563">
-        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-vision-9.4.0_844ab28104b4076c7494ef544881723b62037137\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\StudioProjects\face-recognition1\facerecognition\libs\javacpp.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="08f8b1e3fdcc93a1e9076d6279864d6a46982a85">
-        <dex dex="C:\StudioProjects\face-recognition1\facerecognition\build\intermediates\transforms\dex\debug\folders\1000\2\javacpp_db917d33179d4e9736aaf824fd09b8759e14655c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.4.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -111,24 +183,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="618485fef3ebe12127f7622abbc9b5b39057b5c2">
-        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-9.4.0_e4e16566a5a3165a4f8e89fdc6dea06c549854ee\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
-        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.2.1_10cd953c940accdea77ebb67004f63b8f836c70e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\StudioProjects\face-recognition1\facerecognition\libs\javacv.jar"
         jumboMode="true"
         optimize="true"
@@ -138,30 +192,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
-        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.2.1_3cd0fe00684054db07cb9f1ff9cc641d7dbacffd\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\StudioProjects\UpecFaceRecognition\app\libs\javacpp.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.1"
         sha1="08f8b1e3fdcc93a1e9076d6279864d6a46982a85">
         <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\2\javacpp_f1ba075091f9ccee9b1b2fe76d3890b7d71eadc0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_251288208ef0335f721543f7df6b0c3f431614ae\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -180,15 +216,6 @@
         revision="23.0.1"
         sha1="d5c731fc64c03dfe04d51134955b483551c35849">
         <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.1_5d57b8f947be8a9193b474f8bfd64dc54f99b9fe\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
-        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_5056d99fb8ed4addbca4f741fb14608b0193390c\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -243,15 +270,6 @@
         revision="23.0.1"
         sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
         <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.1_34cc5634f5b165edc2cdea5b03f5c7c3cdc5a780\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.1"
-        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
-        <dex dex="C:\StudioProjects\UpecFaceRecognition\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_f83aa379fbcead97a45f6f6f3e276687d3e4bd7e\classes.dex" />
     </item>
     <item
         is-multidex="true"

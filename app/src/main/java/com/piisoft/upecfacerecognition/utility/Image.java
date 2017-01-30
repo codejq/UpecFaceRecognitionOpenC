@@ -34,14 +34,23 @@ public class Image {
     public static  Bitmap bitmapFromJpg(String ImagePath){
         BitmapFactory.Options bitmapFatoryOptions=new BitmapFactory.Options();
         bitmapFatoryOptions.inPreferredConfig= Bitmap.Config.ARGB_8888;
-        return convert(BitmapFactory.decodeFile(ImagePath ,bitmapFatoryOptions), Bitmap.Config.ARGB_8888);
+        return  BitmapFactory.decodeFile(ImagePath ,bitmapFatoryOptions) ;
     }
+
+    public static  Bitmap SquareBitmapFromJpg(File ImagePath , int squareWidth){
+        BitmapFactory.Options bitmapFatoryOptions=new BitmapFactory.Options();
+        bitmapFatoryOptions.inPreferredConfig= Bitmap.Config.ARGB_8888;
+        Bitmap grayImage =   toGrayscale(BitmapFactory.decodeFile(ImagePath.getAbsolutePath() ,bitmapFatoryOptions));
+        return grayImage.createScaledBitmap(grayImage ,squareWidth , squareWidth ,false);
+    }
+
 
     public static  Bitmap bitmapFromJpg(File ImagePath){
         BitmapFactory.Options bitmapFatoryOptions=new BitmapFactory.Options();
         bitmapFatoryOptions.inPreferredConfig= Bitmap.Config.ARGB_8888;
-        return convert( BitmapFactory.decodeFile(ImagePath.getAbsolutePath() ,bitmapFatoryOptions), Bitmap.Config.ARGB_8888);
+        return  BitmapFactory.decodeFile(ImagePath.getAbsolutePath() ,bitmapFatoryOptions);
     }
+
 
 
     public static void saveBitmapToJpg(Bitmap bitmap, String path, String IamgeName , int scaledWidth , int scaledHeight ) {
@@ -49,6 +58,11 @@ public class Image {
         saveBitmapToJpg(dest, path,  IamgeName);
     }
 
+    public static void saveBitmapToJpg(Bitmap bitmap, String path, String IamgeName , float MaxWidth ) {
+        //int newHight =(int) (bitmap.getHeight() * (MaxWidth/bitmap.getWidth()));
+        Bitmap dest =  bitmap.createScaledBitmap(bitmap ,(int) MaxWidth , (int) MaxWidth ,false);
+        saveBitmapToJpg(dest, path,  IamgeName);
+    }
 
     public static void saveBitmapToJpg(Bitmap bitmap, String path, String IamgeName) {
 
@@ -62,7 +76,7 @@ public class Image {
                 folder.mkdirs();
             }
             fOut = new FileOutputStream(file);
-            bitmap = toGrayscale(bitmap);
+            //bitmap = toGrayscale(bitmap);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut); // saving the Bitmap to a file compressed as a JPEG with 85% compression rate
             //MediaStore.Images.Media.insertImage(getContentResolver(), file.getAbsolutePath(), file.getName(), file.getName());
             fOut.flush();

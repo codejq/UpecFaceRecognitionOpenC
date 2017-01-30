@@ -44,6 +44,7 @@ package com.piisoft.upecfacerecognition;
         import java.io.FilenameFilter;
         import java.io.IOException;
         import java.io.OutputStream;
+        import java.util.List;
 
         import static com.piisoft.upecfacerecognition.utility.Image.rotateImage;
         import static com.piisoft.upecfacerecognition.utility.Image.saveBitmapToJpg;
@@ -213,21 +214,61 @@ public final  class CameraHiddenCapturePhoto  {
     private void ClearStrangerFolder(){
         String strangerFolder = Environment.getExternalStorageDirectory().toString() + File.separator + "FaceRecognition"
                 + File.separator + "stranger_faceDatabase";
+        File dir = new File(strangerFolder);
+        if (dir.isDirectory())
+        {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++)
+            {
+                new File(dir, children[i]).delete();
+            }
+        }
     }
 
-    private void SendAlertMail(String imagePath){
+    private void SendAlertMail(){
         //send mail then
-        ClearStrangerFolder();
-        Toast.makeText(context, "you Are Not Authorized to Login into this Device", Toast.LENGTH_SHORT).show();
 
+        Mail m = new Mail("laha295@gmail.com", "mohamed@1");
+        String[] toArr = {"phptop@gmail.com", "codejq@gmail.com"};
+        m.setTo(toArr);
+        m.setFrom("phptop@gmail.com");
+        m.setSubject("Some one use your device here is the data of the person.");
+        m.setBody("Some one use your device here is the data of the person.");
+
+        try {
+
+            String strangerFolder = Environment.getExternalStorageDirectory().toString() + File.separator + "FaceRecognition"
+                    + File.separator + "stranger_faceDatabase";
+            File root = new File(strangerFolder);
+            FilenameFilter pngFilter = new FilenameFilter() {
+                public boolean accept(File dir, String name) {
+                    return name.toLowerCase().endsWith(".jpg");
+                };
+            };
+            File[] imageFiles = root.listFiles(pngFilter);
+            for (File image : imageFiles) {
+                //Bitmap stranger = Image.bitmapFromJpg(image);
+                m.addAttachment(image.getAbsolutePath());
+            }
+
+
+            if(m.send()) {
+                Toast.makeText(context, "Email was sent successfully.", Toast.LENGTH_LONG).show();
+            }
+        } catch(Exception e) {
+            //Toast.makeText(MailApp.this, "There was a problem sending the email.", Toast.LENGTH_LONG).show();
+            Log.e("MailApp", "Could not send email", e);
+        }
     }
+
+
 
 private  void CheckAuthrization(){
     String path = Environment.getExternalStorageDirectory().toString() + File.separator + "FaceRecognition";
     String pathToDatabase = path  + File.separator + "faceDatabase";
     String stranger_faceDatabase =  path + File.separator + "stranger_faceDatabase";
-    PersonRecognizerService pr = new PersonRecognizerService(pathToDatabase,1);
-    pr.train(pathToDatabase,true);
+    PersonRecognizerService pr = new PersonRecognizerService(pathToDatabase,0);
+    pr.train(pathToDatabase,false);
 
 
 
@@ -240,18 +281,33 @@ private  void CheckAuthrization(){
 
     File[] imageFiles = root.listFiles(pngFilter);
     for (File image : imageFiles) {
-        Bitmap stranger = Image.bitmapFromJpg(image);
-        Toast.makeText(context, image.getAbsolutePath(), Toast.LENGTH_SHORT).show();
-        if( pr.predict(stranger)){
+        //Bitmap stranger = Image.bitmapFromJpg(image);
+
+        if( pr.predict(image.getAbsolutePath())){
             Toast.makeText(context, "Ok you are Authorized to Login into this Device", Toast.LENGTH_SHORT).show();
             ClearStrangerFolder();
             return;
         }
     }
     if(imageFiles.length > 0){
-        SendAlertMail(imageFiles[0].getAbsolutePath());
+        Toast.makeText(context, "Not   are Authorized ", Toast.LENGTH_SHORT).show();
+        new SendMailTask().execute("");
+
     }
 }
+
+
+    private class SendMailTask extends AsyncTask<String, String, String> {
+
+         @Override
+        protected String doInBackground(String... strings) {
+            // Some long-running task like downloading an image.
+            SendAlertMail();
+            return "";
+        }
+
+
+    }
 
     // The types specified here are the input data type, the progress type, and the result type
     private class MyAsyncTask extends AsyncTask<String, String, String> {

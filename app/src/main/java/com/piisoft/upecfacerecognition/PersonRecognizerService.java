@@ -32,14 +32,14 @@ public  class PersonRecognizerService {
     int count=0;
     labels labelsFile;
 
-    static  final int WIDTH= 128;
-    static  final int HEIGHT= 128;;
+    static  final int WIDTH= 256;
+    static  final int HEIGHT= 256;;
     private int mProb=999;
 
 
     public PersonRecognizerService(String path , int eRecognizer )
     {
-
+        //faceRecognizer = com.googlecode.javacv.cpp.opencv_contrib.createLBPHFaceRecognizer(2,8,8,8,200);
         chooseRecognizer(eRecognizer);
         // path=Environment.getExternalStorageDirectory()+"/facerecog/faces/";
         mPath=path;
@@ -51,7 +51,7 @@ public  class PersonRecognizerService {
     void chooseRecognizer(int nRec)
     {
         switch(nRec) {
-            case 0: faceRecognizer = com.googlecode.javacv.cpp.opencv_contrib.createLBPHFaceRecognizer(2,8,8,8,200);
+            case 0: faceRecognizer = com.googlecode.javacv.cpp.opencv_contrib.createLBPHFaceRecognizer(2,8,8,8,40);
                 break;
             case 1: faceRecognizer = com.googlecode.javacv.cpp.opencv_contrib.createLBPHFaceRecognizer(1,8,8,8,100);
                 break;
@@ -146,12 +146,41 @@ public  class PersonRecognizerService {
         IplImage ipl = BitmapToIplImage(bmp,-1, -1);
 //		IplImage ipl = MatToIplImage(m,-1, -1);
 
+        /*
+                    img = cvLoadImage(p);
+
+            if (img==null)
+                Log.e("Error","Error cVLoadImage");
+            Log.i("image",p);
+
+            grayImg = IplImage.create(img.width(), img.height(), IPL_DEPTH_8U, 1);
+            cvCvtColor(img, grayImg, CV_BGR2GRAY);
+            images.put(counter, grayImg);
+        */
+
         faceRecognizer.predict(ipl, n, p);
         Log.e("Result:",n[0] + "");
         Log.e("Result:",p[0] + "");
 
 
-        return  n[0]!=-1;
+        return  (n[0]!=-1 && p[0] < 30.0) ;
+    }
+
+
+    public boolean predict(String ImagePath) {
+        int n[] = new int[1];
+        double p[] = new double[1];
+        IplImage img=null;
+        IplImage grayImg;
+        img = cvLoadImage(ImagePath);
+        grayImg = IplImage.create(img.width(), img.height(), IPL_DEPTH_8U, 1);
+        cvCvtColor(img, grayImg, CV_BGR2GRAY);
+        faceRecognizer.predict(grayImg, n, p);
+        Log.e("Result:",n[0] + "");
+        Log.e("Result:",p[0] + "");
+
+
+        return  (n[0]!=-1 && p[0] < 50.0) ;
     }
 
 

@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (id == R.id.action_settings) {
-            OpenFaceTrackerActivity();
+            ShowSettingsActivity();
             return true;
         }
 
@@ -90,6 +90,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, EnrolledGalleryActivity.class);
         startActivity(intent);
      }
+
+    private void ShowSettingsActivity(){
+        Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
 
     private void ShowFdActivity(){
         Intent intent = new Intent(MainActivity.this, FdActivity.class);

@@ -180,7 +180,7 @@ public  class PersonRecognizerService {
         Log.e("Result:",p[0] + "");
 
 
-        return  (n[0]!=-1 && p[0] < 90.0) ;
+        return  (n[0]!=-1 && p[0] < 150.0) ;
     }
 
 

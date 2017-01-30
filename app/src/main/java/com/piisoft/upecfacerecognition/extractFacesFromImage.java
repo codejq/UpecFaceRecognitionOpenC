@@ -20,12 +20,13 @@ import android.media.FaceDetector;
 import android.util.SparseArray;
 
 import com.google.android.gms.vision.Frame;
+import com.google.android.gms.vision.face.Landmark;
 import com.piisoft.upecfacerecognition.utility.Image;
 
 import java.io.File;
 import java.util.List;
 
-
+import static android.R.attr.x;
 
 
 public class extractFacesFromImage {
@@ -97,8 +98,19 @@ public class extractFacesFromImage {
                 Bitmap bmFace = Bitmap.createBitmap(image, (int) face.getPosition().x - widthDiffrance, (int) face.getPosition().y , (int) face.getHeight(), (int) face.getHeight());
                 Image.saveBitmapToJpg(bmFace, OutPutPath, "face_" + System.currentTimeMillis() + ".jpg",256,256);*/
                 //Bitmap bmFace = Bitmap.createBitmap(image, (int) face.getPosition().x, (int) face.getPosition().y, (int) face.getWidth(), (int) face.getHeight());
-                Bitmap bmFace = Bitmap.createBitmap(image, (int) face.getPosition().x, (int) face.getPosition().y, (int) face.getWidth(), (int) face.getHeight());
-                Image.saveBitmapToJpg(bmFace, OutPutPath, "face_" + System.currentTimeMillis() + ".jpg",256);
+
+               /*
+                please use lanMArk.get(0).getType() == Landmark.LEFT_EYE
+                List<Landmark> lanMArk = face.getLandmarks();
+                int X = (int) lanMArk.get(0).getPosition().x;
+                int Y = (int) lanMArk.get().getPosition().y - 25;
+                int width = x + (int) lanMArk.get(Landmark.RIGHT_EAR).getPosition().x;
+                int height = Y +  (int) lanMArk.get(Landmark.BOTTOM_MOUTH).getPosition().x + 25;
+                Bitmap bmFace2 = Bitmap.createBitmap(image, X, Y, width, height);
+                Image.saveBitmapToJpg(bmFace2, OutPutPath, "_only_face_" + System.currentTimeMillis() + ".jpg",256);*/
+
+                Bitmap bmFace = Bitmap.createBitmap(image, (int) face.getPosition().x  , (int) face.getPosition().y, (int) face.getWidth()  , (int) face.getHeight());
+                Image.saveBitmapToJpg(bmFace, OutPutPath, "_only_face_" + System.currentTimeMillis() + ".jpg",256);
             }
             catch (Exception e){
                 e.printStackTrace();/*

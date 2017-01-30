@@ -10,11 +10,11 @@
     <header
         android:fragment="com.piisoft.upecfacerecognition.SettingsActivity$NotificationPreferenceFragment"
         android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/pref_header_notifications" />
+        android:title="Email Settings" />
 
     <header
         android:fragment="com.piisoft.upecfacerecognition.SettingsActivity$DataSyncPreferenceFragment"
         android:icon="@drawable/ic_sync_black_24dp"
-        android:title="@string/pref_header_data_sync" />
+        android:title="Advanced" />
 
 </preference-headers>

@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="C:\StudioProjects\UpecFaceRecognitionOpenC\openCVLibrary2410\src\main\shaders"/></dataSet><dataSet config="release"><source path="C:\StudioProjects\UpecFaceRecognitionOpenC\openCVLibrary2410\src\release\shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\StudioProjects\UpecFaceRecognition\openCVLibrary2410\src\main\shaders"/></dataSet><dataSet config="release"><source path="C:\StudioProjects\UpecFaceRecognition\openCVLibrary2410\src\release\shaders"/></dataSet></merger>

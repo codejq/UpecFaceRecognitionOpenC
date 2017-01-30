@@ -51,7 +51,7 @@ public  class PersonRecognizerService {
     void chooseRecognizer(int nRec)
     {
         switch(nRec) {
-            case 0: faceRecognizer = com.googlecode.javacv.cpp.opencv_contrib.createLBPHFaceRecognizer(2,8,8,8,40);
+            case 0: faceRecognizer = com.googlecode.javacv.cpp.opencv_contrib.createLBPHFaceRecognizer(2,8,8,8,200);
                 break;
             case 1: faceRecognizer = com.googlecode.javacv.cpp.opencv_contrib.createLBPHFaceRecognizer(1,8,8,8,100);
                 break;
@@ -180,7 +180,7 @@ public  class PersonRecognizerService {
         Log.e("Result:",p[0] + "");
 
 
-        return  (n[0]!=-1 && p[0] < 50.0) ;
+        return  (n[0]!=-1 && p[0] < 90.0) ;
     }
 
 

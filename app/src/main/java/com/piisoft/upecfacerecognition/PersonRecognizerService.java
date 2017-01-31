@@ -35,7 +35,7 @@ public  class PersonRecognizerService {
     static  final int WIDTH= 256;
     static  final int HEIGHT= 256;;
     private int mProb=999;
-
+    private double distnace= 0.0;
 
     public PersonRecognizerService(String path , int eRecognizer )
     {
@@ -178,9 +178,9 @@ public  class PersonRecognizerService {
         faceRecognizer.predict(grayImg, n, p);
         Log.e("Result:",n[0] + "");
         Log.e("Result:",p[0] + "");
+        distnace = p[0];
 
-
-        return  (n[0]!=-1 && p[0] < 150.0) ;
+        return  (n[0]!=-1 && p[0] < 128.5) ;
     }
 
 

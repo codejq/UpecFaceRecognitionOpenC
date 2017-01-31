@@ -19,7 +19,7 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="Gmail Password"
-        android:key="edit_text_preference_2"
+        android:key="gmail_password"
         android:summary="Gmail Password of the account you want  to use for sending emails"
         android:password="true" />
     <EditTextPreference
@@ -27,6 +27,6 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="Notifi mail  "
-        android:key="edit_text_preference_1"
+        android:key="notifi_email"
         android:summary="Enter email address which will recive and alert when an un authorized login attempted detected " />
 </PreferenceScreen>

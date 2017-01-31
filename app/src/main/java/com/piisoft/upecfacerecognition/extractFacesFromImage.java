@@ -109,7 +109,7 @@ public class extractFacesFromImage {
                 Bitmap bmFace2 = Bitmap.createBitmap(image, X, Y, width, height);
                 Image.saveBitmapToJpg(bmFace2, OutPutPath, "_only_face_" + System.currentTimeMillis() + ".jpg",256);*/
 
-                Bitmap bmFace = Bitmap.createBitmap(image, (int) face.getPosition().x  , (int) face.getPosition().y, (int) face.getWidth()  , (int) face.getHeight());
+                Bitmap bmFace = Bitmap.createBitmap(image, (int) face.getPosition().x  , (int) face.getPosition().y , (int) face.getWidth()  , (int) face.getHeight() );
                 Image.saveBitmapToJpg(bmFace, OutPutPath, "_only_face_" + System.currentTimeMillis() + ".jpg",256);
             }
             catch (Exception e){

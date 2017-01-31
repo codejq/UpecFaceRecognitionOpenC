@@ -110,9 +110,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(EXTRA_MESSAGE, message);*/
 
         startActivity(intent);
-        TextView tv = (TextView)  findViewById(R.id.sample_text);
 
-        tv.setText(System.currentTimeMillis() + "");
     }
 
     public void OpenFaceTrackerActivity(View view) {

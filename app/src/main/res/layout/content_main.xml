@@ -14,16 +14,35 @@
     tools:showIn="@layout/activity_main"
     tools:context="com.piisoft.upecfacerecognition.MainActivity">
 
-    <TextView
-        android:id="@+id/sample_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-
     <Button
-        android:text="Add Your Face"
+        android:text="Add Allowed User"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/BtnAddYourFace2"
         android:onClick="OpenFaceTrackerActivity" />
+
+    <TextView
+        android:text="This App will send you and email when someone use your mobile without your permission or even when someone steal your mobile the app will take a picture of this person and send them by mail and send their GPS location \n to the email address you define here you have \n * first to register your photo and \n * register the people you expect to use the mobile\n * then the app will every time someone unlock the phone will check them without they knew or regard\n * that the app will work completely in the background and take the picture using the front camera in the background\n * don’t warry the app will consume vey very less amount of battery and processor\n * This app is completely free and open source this app is made available to you due to the efforts of international Biometrics Master team \n * please visit the link to knew more about this master www.international-education-biometrics.org/\n * this was a small project required to be done for me as student in this master and I made it open source for other people to improve it and may be learn from it \n * special thanks to Prof. Amine NAIT-ALI the head of the first International Master program of Biometrics \n "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:linksClickable="true"
+        android:textStyle="normal|bold"
+        android:inputType="textMultiLine"
+        tools:text="This App will send you and email when someone use your mobile without your permission or even when someone steal your mobile the app will take a picture of this person and send them by mail and send their GPS location \n to the email address you define here you have \n * first to register your photo and \n * register the people you expect to use the mobile\n * then the app will every time someone unlock the phone will check them without they knew or regard\n * that the app will work completely in the background and take the picture using the front camera in the background\n * don’t warry the app will consume vey very less amount of battery and processor\n * This app is completely free and open source this app is made available to you due to the efforts of international Biometrics Master team \n * please visit the link to knew more about this master www.international-education-biometrics.org/\n * this was a small project required to be done for me as student in this master and I made it open source for other people to improve it and may be learn from it \n * special thanks to Prof. Amine NAIT-ALI the head of the first International Master program of Biometrics \n "
+        android:isScrollContainer="true"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:layout_below="@+id/BtnAddYourFace2"
+        android:layout_alignParentStart="true"
+        android:textColorLink="?android:attr/colorMultiSelectHighlight"
+        android:textColor="@color/common_google_signin_btn_text_light_focused" />
+
+    <Button
+        android:text="Show  Users"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp" />
 </RelativeLayout>

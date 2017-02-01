@@ -19,4 +19,9 @@
         android:summary="as you increase the Threshold you will increase the false acceptance of unauthorized user"
         tools:numeric="integer"
         android:numeric="integer" />
+    <SwitchPreference
+        android:defaultValue="false"
+        android:title="use native detector"
+        android:key="use_android_native_detector"
+        android:summary="use android native detector to extract face information " />
 </PreferenceScreen>

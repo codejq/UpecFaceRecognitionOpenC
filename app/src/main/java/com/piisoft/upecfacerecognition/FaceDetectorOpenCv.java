@@ -6,11 +6,15 @@ package com.piisoft.upecfacerecognition;
  */
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
+
+import com.piisoft.upecfacerecognition.utility.Image;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
+import org.opencv.android.Utils;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
@@ -31,30 +35,36 @@ import java.io.InputStream;
 
 public class FaceDetectorOpenCv {
     private static Mat cropImage;
-    private static Context context;
+    private final   Context context;
     private static String ImagePath ;
     private static String OutPutPath;
-
-    public  FaceDetectorOpenCv(Context _context ,String ImagePath , String OutPutPath){
-        context = _context;
-        OpenCVLoader.initOpenCV("2.4.10",context.getApplicationContext(),mLoaderCallback);
-        System.loadLibrary("opencv_java" );
+    static {
+        OpenCVLoader.initDebug();
+        System.loadLibrary("opencv_java");
     }
 
-    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(context) {
-        @Override
-        public void onManagerConnected(int status) {
-            if(status == LoaderCallbackInterface.SUCCESS){
-                Log.e(""," LoaderCallbackInterface.SUCCESS ");
-                detectFaces( ImagePath ,  OutPutPath);
+    public  FaceDetectorOpenCv(String _ImagePath , String _OutPutPath , Context _context){
+        this.context = _context;
+        ImagePath = _ImagePath;
+        OutPutPath = _OutPutPath;
+
+         BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(context) {
+            @Override
+            public void onManagerConnected(int status) {
+                if(status == LoaderCallbackInterface.SUCCESS){
+                    Log.e(""," LoaderCallbackInterface.SUCCESS ");
+                    detectFaces( ImagePath ,  OutPutPath);
+                }
             }
-        }
-    };
+        };
+        mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
+    }
 
-    public static void detectFaces(String ImagePath , String OutPutPath) {
-        int x = 0,y = 0,height = 0,width = 0;
 
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+
+    public  void detectFaces(String ImagePath , String OutPutPath) {
+        int x = 0,y = 0,height = 0,width = 0,mAbsoluteFaceSize=0;
+        (new File(OutPutPath)).mkdirs();
         System.out.println("\nRunning FaceDetector");
 
         // load cascade file from application resources
@@ -87,18 +97,34 @@ public class FaceDetectorOpenCv {
         CascadeClassifier faceDetector = new CascadeClassifier(mCascadeFile.getAbsolutePath());
         Log.e(""," CascadeClassifier loaded suscfully");
         Mat image = Highgui.imread(ImagePath);
-        faceDetector.detectMultiScale(image, face_Detections);
+        Mat mGray = Highgui.imread(ImagePath,Highgui.CV_LOAD_IMAGE_GRAYSCALE );
+        float  mRelativeFaceSize   = 0.2f;
+        height = mGray.rows();
+            if (Math.round(height * mRelativeFaceSize) > 0) {
+                mAbsoluteFaceSize = Math.round(height * mRelativeFaceSize);
+            }
+            //  mNativeDetector.setMinFaceSize(mAbsoluteFaceSize);
+
+
+        faceDetector.detectMultiScale(mGray, face_Detections, 1.1, 2, 2,
+                new Size(mAbsoluteFaceSize, mAbsoluteFaceSize), new Size());
         System.out.println(String.format("Detected %s faces",  face_Detections.toArray().length));
         Rect rect_Crop=null;
         for (Rect rect : face_Detections.toArray()) {
+            Mat m = image.submat(rect);
+            Bitmap mBitmap = Bitmap.createBitmap(m.width(),m.height(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(m, mBitmap);
+            Image.saveBitmapToJpg(mBitmap, OutPutPath, "opencv_image_" + System.currentTimeMillis() + ".jpg",256);
+            /*
             Core.rectangle(image, new Point(rect.x, rect.y), new Point(rect.x + rect.width, rect.y + rect.height),
                     new Scalar(0, 255, 0));
             Rect rectCrop = new Rect(rect.x, rect.y, rect.width, rect.height);
             Mat image_roi = new Mat(image,rectCrop);
             Highgui.imwrite(OutPutPath +  File.separator +  "opencv_image_" +  File.separator + System.currentTimeMillis() + ".jpg",image_roi);
+            */
         }
 
-
+        new File(ImagePath).delete();
 
 
 

@@ -29,11 +29,18 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                ShowFdActivity();
+                OpenFaceTrackerActivity();
             }
         });
+
+        Button showAuthorizedActivityBtn = (Button) findViewById(R.id.btn_show_authorized_User);
+        showAuthorizedActivityBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowAuthorizedUser();;
+            }
+        });
+
 
         // Start AEScreenOnOffService Service
 

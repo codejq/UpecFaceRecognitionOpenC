@@ -314,8 +314,13 @@ private  void CheckAuthrization(){
 
         @Override
         protected String doInBackground(String... strings) {
+
+            new FaceDetectorOpenCv(strings[0] ,strings[1],context);
+
             // Some long-running task like downloading an image.
-            new extractFacesFromImage(strings[0], strings[1],context);
+            // ToDO based on user  selection use android native detector to extract the face
+            //then uncomment the line after
+           // new extractFacesFromImage(strings[0], strings[1],context);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {

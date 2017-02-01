@@ -48,6 +48,8 @@ import com.piisoft.upecfacerecognition.ui.camera.CameraSourcePreview;
 import com.piisoft.upecfacerecognition.ui.camera.GraphicOverlay;
 import com.piisoft.upecfacerecognition.utility.Exif;
 
+import org.opencv.android.OpenCVLoader;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -73,7 +75,8 @@ public final class FaceTrackerActivity extends AppCompatActivity {
     // permission request codes need to be < 256
     private static final int RC_HANDLE_CAMERA_PERM = 2;
     private  long lastImageTakenTime = 0;
-    Context context;
+    private Context context;
+
     //==============================================================================================
     // Activity Methods
     //==============================================================================================
@@ -112,7 +115,7 @@ public final class FaceTrackerActivity extends AppCompatActivity {
                 saveCurrentImage();
             }
         });
-        context = getBaseContext();
+        this.context = getBaseContext();
 
         int rc = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         if (rc == PackageManager.PERMISSION_GRANTED) {
@@ -242,7 +245,7 @@ public final class FaceTrackerActivity extends AppCompatActivity {
             String IamgeName = "full_image_" + System.currentTimeMillis()  +".jpg" ;
             saveBitmapToJpg(bitmap ,  path  , IamgeName , 256 ,256);
             Toast.makeText( getApplicationContext(),  "Image Taken Ok" ,Toast.LENGTH_SHORT). show();
-            new MyAsyncTask(FaceTrackerActivity.this).execute(path +  File.separator +  IamgeName , path +  File.separator + "faceDatabase"
+            new MyAsyncTask(context).execute(path +  File.separator +  IamgeName , path +  File.separator + "faceDatabase"
                     , path +  File.separator + "faceDatabase");
         }
 
@@ -260,8 +263,11 @@ public final class FaceTrackerActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
+            new FaceDetectorOpenCv(strings[0] ,strings[1],mContext);
             // Some long-running task like downloading an image.
-            new extractFacesFromImage(strings[0] ,strings[1],mContext);
+            // ToDO based on user  selection use android native detector to extract the face
+            //then uncomment the line after
+            //new extractFacesFromImage(strings[0] ,strings[1],mContext);
             PersonRecognizerService pr = new PersonRecognizerService(strings[2] , 0);
             pr.train(strings[2] ,true);
             return "";

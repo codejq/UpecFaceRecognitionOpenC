@@ -1,15 +1,20 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <SwitchPreference
-        android:defaultValue="true"
-        android:key="enable_protection"
-        android:summary="if you disable this the app will no longer check the user every time he unloack the phone"
-        android:title="Enable Protection" />
+
     <SwitchPreference
         android:defaultValue="false"
         android:title="Enable Debug  "
         android:key="enable_debug"
         android:summary="Enable Debug infomration to display to the user " />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="enable_protection"
+        android:summary="if you disable this the app will no longer check the user every time he unloack the phone"
+        android:title="Enable Protection" />
+
+
+
 
     <!-- NOTE: EditTextPreference accepts EditText attributes. -->
     <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->

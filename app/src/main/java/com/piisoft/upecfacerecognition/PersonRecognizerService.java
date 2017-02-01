@@ -180,7 +180,7 @@ public  class PersonRecognizerService {
         Log.e("Result:",p[0] + "");
         distnace = p[0];
 
-        return  (n[0]!=-1 && p[0] < 128.5) ;
+        return  (n[0]!=-1 && p[0] < 70) ;
     }
 
 

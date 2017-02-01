@@ -96,8 +96,12 @@ public class FaceDetectorOpenCv {
         Log.e(""," Before CascadeClassifier loaded ");
         CascadeClassifier faceDetector = new CascadeClassifier(mCascadeFile.getAbsolutePath());
         Log.e(""," CascadeClassifier loaded suscfully");
-        Mat image = Highgui.imread(ImagePath);
+        Mat image = Highgui.imread(ImagePath,Highgui.CV_LOAD_IMAGE_COLOR);
         Mat mGray = Highgui.imread(ImagePath,Highgui.CV_LOAD_IMAGE_GRAYSCALE );
+
+
+
+
         float  mRelativeFaceSize   = 0.2f;
         height = mGray.rows();
             if (Math.round(height * mRelativeFaceSize) > 0) {
@@ -113,7 +117,9 @@ public class FaceDetectorOpenCv {
         for (Rect rect : face_Detections.toArray()) {
             Mat m = image.submat(rect);
             Bitmap mBitmap = Bitmap.createBitmap(m.width(),m.height(), Bitmap.Config.ARGB_8888);
-            Utils.matToBitmap(m, mBitmap);
+            Mat coloredImage = new Mat();
+            Imgproc.cvtColor(m, coloredImage, Imgproc.COLOR_BGR2RGB);
+            Utils.matToBitmap(coloredImage, mBitmap);
             Image.saveBitmapToJpg(mBitmap, OutPutPath, "opencv_image_" + System.currentTimeMillis() + ".jpg",256);
             /*
             Core.rectangle(image, new Point(rect.x, rect.y), new Point(rect.x + rect.width, rect.y + rect.height),

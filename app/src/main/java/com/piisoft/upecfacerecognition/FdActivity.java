@@ -208,7 +208,7 @@ public class FdActivity extends Activity implements CvCameraViewListener2 {
         String path = Environment.getExternalStorageDirectory().toString() + File.separator + "FaceRecognition";
         String pathToDatabase = path  + File.separator + "faceDatabase";
         String stranger_faceDatabase =  path + File.separator + "stranger_faceDatabase";
-        PersonRecognizerService pr = new PersonRecognizerService(pathToDatabase,1);
+        PersonRecognizerService pr = new PersonRecognizerService(pathToDatabase,1,70);
         pr.train(pathToDatabase,true);
 
 

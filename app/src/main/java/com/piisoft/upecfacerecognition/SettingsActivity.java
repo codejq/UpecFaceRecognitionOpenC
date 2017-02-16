@@ -10,6 +10,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -80,11 +81,30 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             } else {
                 // For all other preferences, set the summary to the value's
                 // simple string representation.
-                preference.setSummary(stringValue);
+                if (preference instanceof EditTextPreference){
+                    // For the pin code, set a *** value in the summary to hide it
+                    if (preference.getKey().equals("gmail_password")) {
+                        stringValue = toStars(stringValue);
+                    }
+                    preference.setSummary(stringValue);
+                }
+                else {
+                    preference.setSummary(stringValue);
+                }
             }
             return true;
         }
     };
+
+    static String toStars(String text) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < text.length(); i++) {
+            sb.append('*');
+        }
+        text = sb.toString();
+        return text;
+
+    }
 
     /**
      * Helper method to determine if the device has an extra-large screen. For

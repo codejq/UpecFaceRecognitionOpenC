@@ -21,12 +21,14 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
@@ -263,12 +265,14 @@ public final class FaceTrackerActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+            int recognition_threshold  = Integer.valueOf(prefs.getString("recognition_threshold", "70"));
             new FaceDetectorOpenCv(strings[0] ,strings[1],mContext);
             // Some long-running task like downloading an image.
             // ToDO based on user  selection use android native detector to extract the face
             //then uncomment the line after
             //new extractFacesFromImage(strings[0] ,strings[1],mContext);
-            PersonRecognizerService pr = new PersonRecognizerService(strings[2] , 0);
+            PersonRecognizerService pr = new PersonRecognizerService(strings[2] , 0 , recognition_threshold);
             pr.train(strings[2] ,true);
             return "";
         }

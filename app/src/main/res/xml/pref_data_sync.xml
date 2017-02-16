@@ -8,20 +8,21 @@
          design guidelines. -->
 
     <EditTextPreference
-        android:defaultValue="Default value"
+        android:defaultValue="anti.theft.monitor@gmail.com"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="Gmail Account "
         android:key="gmail_account"
         android:summary="Gmail Account to send notification email from " />
     <EditTextPreference
-        android:defaultValue="Default value"
+        android:defaultValue="4THTGR566yyTGJH0BH67JLjH5457070"
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="Gmail Password"
         android:key="gmail_password"
         android:summary="Gmail Password of the account you want  to use for sending emails"
-        android:password="true" />
+        android:password="true"
+ />
     <EditTextPreference
         android:defaultValue="Default value"
         android:selectAllOnFocus="true"
@@ -29,4 +30,13 @@
         android:title="Notifi mail  "
         android:key="notifi_email"
         android:summary="Enter email address which will recive and alert when an un authorized login attempted detected " />
+    <EditTextPreference
+        android:defaultValue="https://www.google.com/settings/security/lesssecureapps"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Allow Access for less secure apps"
+        android:key="allow_less_secure"
+        android:autoLink="web"
+        android:contextClickable="true"
+        android:editable="false" />
 </PreferenceScreen>

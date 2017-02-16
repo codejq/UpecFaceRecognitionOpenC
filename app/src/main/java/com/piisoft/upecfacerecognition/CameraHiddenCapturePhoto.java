@@ -7,6 +7,7 @@ package com.piisoft.upecfacerecognition;
         import android.app.Dialog;
         import android.content.Context;
         import android.content.DialogInterface;
+        import android.content.SharedPreferences;
         import android.content.pm.PackageManager;
         import android.graphics.Bitmap;
         import android.graphics.BitmapFactory;
@@ -16,6 +17,7 @@ package com.piisoft.upecfacerecognition;
         import android.os.Build;
         import android.os.Bundle;
         import android.os.Environment;
+        import android.preference.PreferenceManager;
         import android.provider.ContactsContract;
         import android.provider.MediaStore;
         import android.support.design.widget.FloatingActionButton;
@@ -66,6 +68,12 @@ public final  class CameraHiddenCapturePhoto  {
     private static final int RC_HANDLE_CAMERA_PERM = 2;
     private long lastImageTakenTime = 0;
     Context context;
+    boolean enable_protection=true;
+    boolean enable_debug = false;
+    String gmail_account = "";
+    String gmail_password = "";
+    String notifi_email = "";
+    int recognition_threshold = 70;
     //==============================================================================================
     // Activity Methods
     //==============================================================================================
@@ -76,6 +84,16 @@ public final  class CameraHiddenCapturePhoto  {
 
     public   CameraHiddenCapturePhoto(Context _context){
         context = _context;
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(_context);
+        enable_protection = prefs.getBoolean("enable_protection", true);
+        enable_debug = prefs.getBoolean("enable_debug", false);
+        gmail_account  = prefs.getString("gmail_account", "anti.theft.monitor@gmail.com");
+        gmail_password = prefs.getString("gmail_password", "4THTGR566yyTGJH0BH67JLjH5457070");
+        notifi_email = prefs.getString("notifi_email", "");
+        recognition_threshold  = Integer.valueOf(prefs.getString("recognition_threshold", "70"));
+        if(!enable_protection) {
+            return;
+        }
         createCameraSource(CameraSource.CAMERA_FACING_FRONT,context);
         startCameraSource();
     }
@@ -202,7 +220,9 @@ public final  class CameraHiddenCapturePhoto  {
             String pathToDatabase = path  + File.separator + "faceDatabase";
                     String IamgeName = "stranger_full_image_" + System.currentTimeMillis() + ".jpg";
             saveBitmapToJpg(bitmap, path, IamgeName);
-            Toast.makeText(context, "Image Taken Ok", Toast.LENGTH_SHORT).show();
+            if(enable_debug) {
+                Toast.makeText(context, "Image Taken Ok", Toast.LENGTH_SHORT).show();
+            }
             UnMuteAudio();
             new MyAsyncTask().execute(path + File.separator + IamgeName
                     , path + File.separator + "stranger_faceDatabase"
@@ -228,10 +248,10 @@ public final  class CameraHiddenCapturePhoto  {
     private void SendAlertMail(){
         //send mail then
 
-        Mail m = new Mail("laha295@gmail.com", "mohamed@1");
-        String[] toArr = {"phptop@gmail.com", "codejq@gmail.com"};
+        Mail m = new Mail(gmail_account, gmail_password);
+        String[] toArr = notifi_email.trim().replace(";","#").replace(",","#").split("#");
         m.setTo(toArr);
-        m.setFrom("phptop@gmail.com");
+        m.setFrom(gmail_account);
         m.setSubject("Some one use your device here is the data of the person.");
         m.setBody("Some one use your device here is the data of the person.");
 
@@ -253,7 +273,9 @@ public final  class CameraHiddenCapturePhoto  {
 
 
             if(m.send()) {
-                Toast.makeText(context, "Email was sent successfully.", Toast.LENGTH_LONG).show();
+                if(enable_debug) {
+                    Toast.makeText(context, "Email was sent successfully.", Toast.LENGTH_LONG).show();
+                }
             }
         } catch(Exception e) {
             //Toast.makeText(MailApp.this, "There was a problem sending the email.", Toast.LENGTH_LONG).show();
@@ -267,7 +289,7 @@ private  void CheckAuthrization(){
     String path = Environment.getExternalStorageDirectory().toString() + File.separator + "FaceRecognition";
     String pathToDatabase = path  + File.separator + "faceDatabase";
     String stranger_faceDatabase =  path + File.separator + "stranger_faceDatabase";
-    PersonRecognizerService pr = new PersonRecognizerService(pathToDatabase,0);
+    PersonRecognizerService pr = new PersonRecognizerService(pathToDatabase,0,recognition_threshold);
     pr.train(pathToDatabase,false);
 
 
@@ -284,13 +306,19 @@ private  void CheckAuthrization(){
         //Bitmap stranger = Image.bitmapFromJpg(image);
 
         if( pr.predict(image.getAbsolutePath())){
-            Toast.makeText(context, "Ok you are Authorized to Login into this Device", Toast.LENGTH_SHORT).show();
+            if(enable_debug) {
+                Toast.makeText(context, "Ok you are Authorized to Login into this Device your face prediction distance is :"
+                        + (int) pr.distnace, Toast.LENGTH_LONG).show();
+            }
             ClearStrangerFolder();
             return;
         }
     }
     if(imageFiles.length > 0){
-        Toast.makeText(context, "Not   are Authorized ", Toast.LENGTH_SHORT).show();
+        if(enable_debug) {
+            Toast.makeText(context, "No your are not Authorized  your face prediction distance is :"
+                    + (int) pr.distnace, Toast.LENGTH_LONG).show();
+        }
         new SendMailTask().execute("");
 
     }
@@ -364,7 +392,9 @@ private  void CheckAuthrization(){
         int code = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(
                 context);
         if (code != ConnectionResult.SUCCESS) {
-            Toast.makeText(context, "check that the device has play services available", Toast.LENGTH_SHORT).show();
+            if(enable_debug) {
+                Toast.makeText(context, "check that the device has play services available", Toast.LENGTH_SHORT).show();
+            }
         }
 
         if (mCameraSource != null) {
@@ -381,9 +411,17 @@ private  void CheckAuthrization(){
                 }
                 mCameraSource.start();
             } catch (IOException e) {
+                if(enable_debug) {
+                    Toast.makeText(context, "Unable to start camera source" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
                 Log.e(TAG, "Unable to start camera source.", e);
                 mCameraSource.release();
                 mCameraSource = null;
+            }
+            catch (Exception ex){
+                if(enable_debug) {
+                    Toast.makeText(context, "Unable to start camera source" + ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }

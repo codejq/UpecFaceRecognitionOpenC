@@ -35,12 +35,14 @@ public  class PersonRecognizerService {
     static  final int WIDTH= 256;
     static  final int HEIGHT= 256;;
     private int mProb=999;
-    private double distnace= 0.0;
+    public double distnace= 0.0;
+    private  int recognition_threshold = 70;
 
-    public PersonRecognizerService(String path , int eRecognizer )
+    public PersonRecognizerService(String path , int eRecognizer , int _recognition_threshold  )
     {
         //faceRecognizer = com.googlecode.javacv.cpp.opencv_contrib.createLBPHFaceRecognizer(2,8,8,8,200);
         chooseRecognizer(eRecognizer);
+        recognition_threshold = _recognition_threshold;
         // path=Environment.getExternalStorageDirectory()+"/facerecog/faces/";
         mPath=path;
 
@@ -180,7 +182,7 @@ public  class PersonRecognizerService {
         Log.e("Result:",p[0] + "");
         distnace = p[0];
 
-        return  (n[0]!=-1 && p[0] < 70) ;
+        return  (n[0]!=-1 && p[0] < recognition_threshold) ;
     }
 
 

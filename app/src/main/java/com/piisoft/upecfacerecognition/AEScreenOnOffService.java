@@ -8,7 +8,9 @@ import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -35,11 +37,23 @@ public class AEScreenOnOffService extends Service {
 
         boolean screenOn = false;
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext()); //this.getSharedPreferences("pref_general", getBaseContext().MODE_PRIVATE);
+        boolean enable_protection = prefs.getBoolean("enable_protection", true);
+        boolean enable_debug = prefs.getBoolean("enable_debug", false);
+        if(!enable_protection){
+            return;
+        }
+
         try{
             // Get ON/OFF values sent from receiver ( AEScreenOnOffReceiver.java )
             screenOn = intent.getBooleanExtra("phone_unlocked", false);
 
-        }catch(Exception e){ Toast.makeText(getBaseContext(), "Error on, ", Toast.LENGTH_SHORT).show();e.printStackTrace();}
+        }catch(Exception e){
+            if(enable_debug) {
+                Toast.makeText(getBaseContext(), "Error Happen:" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+        }
 
         //  Toast.makeText(getBaseContext(), "Service on start :"+screenOn,
         //Toast.LENGTH_SHORT).show();
@@ -48,8 +62,9 @@ public class AEScreenOnOffService extends Service {
 
             // your code here
             // Some time required to start any service
-            Toast.makeText(getBaseContext(), "Screen off, ", Toast.LENGTH_SHORT).show();
-
+            if(enable_debug) {
+                Toast.makeText(getBaseContext(), "Screen off, ", Toast.LENGTH_SHORT).show();
+            }
 
 
 
@@ -62,7 +77,9 @@ public class AEScreenOnOffService extends Service {
             // your code here
             // Some time required to stop any service to save battery consumption
             new CameraHiddenCapturePhoto(getBaseContext());
-            Toast.makeText(getBaseContext(), "Screen on,", Toast.LENGTH_SHORT).show();
+            if(enable_debug) {
+                Toast.makeText(getBaseContext(), "Screen on,", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
